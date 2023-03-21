@@ -11,9 +11,14 @@ namespace DapperStore.Automapper
         public ConfigurationProfile()
         {
             CreateMap<InsertNewClient, Client>().ReverseMap();
-        }
+            CreateMap<InsertNewProduct, Product>().ReverseMap();
+            CreateMap<InsertNewSale, Sale>().ReverseMap();
 
 
 
         }
+
+
+
+    }
 }

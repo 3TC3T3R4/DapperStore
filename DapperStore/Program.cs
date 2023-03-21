@@ -23,6 +23,12 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IProductUseCase, ProductUseCase>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
+builder.Services.AddScoped<ISaleUseCase, SaleUseCase>();
+
+builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+
+
+
 builder.Services.AddTransient<IDbConnectionBuilder>(e =>
 {
     return new DbConnectionBuilder(builder.Configuration.GetConnectionString("DefaultConnection"));

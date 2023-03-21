@@ -50,12 +50,12 @@ namespace Infraestructure.DriverAdapter
                 lote = product.batch,
                 cantidad = product.quantity
             };
-            string sqlQuery = $"INSERT INTO {tableName} (id_product, name,bactch,quantity)VALUES(@id, @nombre, @lote, @cantidad)";
+            string sqlQuery = $"INSERT INTO {tableName} (id_product, name,batch,quantity)VALUES(@id, @nombre, @lote, @cantidad)";
             var rows = await connection.ExecuteAsync(sqlQuery,productAAgregar);
             return product;
         }
 
-        public Task<Product> InsertClientSqlKataAsync(Product product)
+        public Task<Product> InsertProductSqlKataAsync(Product product)
         {
             throw new NotImplementedException();
         }
