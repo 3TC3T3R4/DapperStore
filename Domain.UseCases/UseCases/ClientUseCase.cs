@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.UseCases.UseCases
 {
-   public class ClientUseCase
+   public class ClientUseCase : IClientUseCase
     {
 
         private readonly IClientRepository _clientRepository;
@@ -19,22 +19,22 @@ namespace Domain.UseCases.UseCases
             _clientRepository = clientRepository;
         }
 
-        public async Task<Client> AgregarDirector(Client client)
+        public async Task<Client> AddClient(Client client)
         {
             return await _clientRepository.InsertClientAsync(client);
         }
 
-        public async Task<Client> InsertarDirectorConKata(Client client)
+        public async Task<Client> InsertClientConKata(Client client)
         {
             return await _clientRepository.InsertClientAsync(client);
         }
 
-        public async Task<Client> ObtenerDirectorPorId(int id)
+        public async Task<Client> GetClientById(int id)
         {
             return await _clientRepository.GetClientByIdAsync(id);
         }
 
-        public async Task<List<Client>> ObtenerListaDirectores()
+        public async Task<List<Client>> GetListClients()
         {
             return await _clientRepository.GetAllClientsAsync();
         }

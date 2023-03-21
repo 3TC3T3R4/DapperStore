@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Entities.Commands;
 using Domain.Entities.Entities;
 using Domain.UseCases;
 using Microsoft.AspNetCore.Mvc;
@@ -40,15 +41,10 @@ namespace DapperStore.Controllers
 
 
         [HttpPost]
-        public async Task<Client> Registrar_Director([FromBody] InsertNewDirector command)
+        public async Task<Client> Insert_Client([FromBody] InsertNewClient command)
         {
             return await _clientUseCase.AddClient(_mapper.Map<Client>(command));
         }
-
-
-
-
-
 
 
     }

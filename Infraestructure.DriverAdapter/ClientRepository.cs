@@ -29,7 +29,7 @@ namespace Infraestructure.DriverAdapter
         public async Task<Client> GetClientByIdAsync(int idClient)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            string sqlQuery = $"SELECT * FROM {tableName} WHERE id = {idClient}";
+            string sqlQuery = $"SELECT * FROM {tableName} WHERE id_client = {idClient}";
             var result = await connection.QueryFirstAsync<Client>(sqlQuery);
             connection.Close();
             return result;
@@ -45,7 +45,7 @@ namespace Infraestructure.DriverAdapter
                     tipodecedula   = client.type_id,
                     nombre = client.name
             };
-            string sqlQuery = $"INSERT INTO {tableName} (id, cedula, tipodecedulal,nombre)VALUES(@id_client, @id_number, @type_id, @name)";
+            string sqlQuery = $"INSERT INTO {tableName} (id_client, id_number, type_id,name)VALUES(@id, @cedula, @tipodecedula, @nombre)";
             var rows = await connection.ExecuteAsync(sqlQuery, clientAAgregar);
             return client;
         }

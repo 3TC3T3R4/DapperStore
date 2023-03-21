@@ -4,6 +4,7 @@ using Domain.UseCases;
 using Domain.UseCases.Gateway.Repository;
 using Domain.UseCases.UseCases;
 using Infraestructure.DriverAdapter;
+using Infraestructure.DriverAdapter.Gateway;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,9 @@ builder.Services.AddAutoMapper(config => config.AddDataReaderMapping(), typeof(C
 
 builder.Services.AddScoped<IClientUseCase, ClientUseCase>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+
+builder.Services.AddScoped<IProductUseCase, ProductUseCase>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddTransient<IDbConnectionBuilder>(e =>
 {
@@ -41,6 +45,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseMiddleware<ErrorHandleMiddleware>();
+//app.UseMiddleware<ErrorHandleMiddleware>();
 
 app.Run();

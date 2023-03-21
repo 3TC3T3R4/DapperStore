@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Infraestructure.DriverAdapter
 {
-   public class DbConnectionBuiler : IDbConnectionBuilder
+   public class DbConnectionBuilder : IDbConnectionBuilder
     {
         private readonly string _connectionString;
 
-        public DbConnectionBuiler(string connectionString) =>
+        public DbConnectionBuilder(string connectionString) =>
 
             _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
 
