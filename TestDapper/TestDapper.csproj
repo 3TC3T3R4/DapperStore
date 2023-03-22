@@ -23,11 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestSale\" />
-    <Folder Include="TestProduct\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Domain.UseCases\Domain.UseCases.csproj" />
   </ItemGroup>
 

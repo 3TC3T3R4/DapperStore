@@ -13,7 +13,7 @@ namespace TestDapper.TestClient
     public class ClientTestCasoDeUso
     {
         [Fact]
-        public async Task ObtenerListaPacientes()
+        public async Task GetListClients()
         {
 
             var clientRepositorioMock = new Mock<IClientRepository>();
@@ -26,31 +26,34 @@ namespace TestDapper.TestClient
 
         }
 
-        //[Fact]
-        //public async Task AddClient()
-        //{
+        [Fact]
+        public async Task AddClient()
+        {
 
-        //    var clientRepositorioMock = new Mock<IClientRepository>();
+            var clientRepositorioMock = new Mock<IClientRepository>();
 
-        //    pacienteRepositorioMock.Setup(x => x.AgregarPaciente(It.IsAny<Paciente>())).ReturnsAsync(new Paciente());
-        //    var pacienteCasoDeUso = new PacienteCasoDeUso(pacienteRepositorioMock.Object);
-        //    var result = await pacienteCasoDeUso.AgregarPaciente(new Paciente());
-        //    Assert.NotNull(result);
-        //    Assert.IsType<Paciente>(result);
-        //}
+            clientRepositorioMock.Setup(x => x.InsertClientAsync(It.IsAny<Client>())).ReturnsAsync(new Client());
+            var pacienteCasoDeUso = new ClientUseCase(clientRepositorioMock.Object);
+            var result = await pacienteCasoDeUso.AddClient(new Client());
+            Assert.NotNull(result);
+            Assert.IsType<Client>(result);
+        }
 
-        //[Fact]
-        //public async Task ObtenerPacientePorId()
-        //{
+        [Fact]
+        public async Task getClientById()
+        {
 
-        //    var pacienteRepositorioMock = new Mock<IPacienteRepositorio>();
+            var clientRepositorioMock = new Mock<IClientRepository>();
 
-        //    pacienteRepositorioMock.Setup(x => x.ObtenerPacientePorId(It.IsAny<int>())).ReturnsAsync(new Paciente());
-        //    var pacienteCasoDeUso = new PacienteCasoDeUso(pacienteRepositorioMock.Object);
-        //    var result = await pacienteCasoDeUso.ObtenerPacientePorId(1);
-        //    Assert.NotNull(result);
-        //    Assert.IsType<Paciente>(result);
-        //}
+            clientRepositorioMock.Setup(x => x.GetClientByIdAsync(It.IsAny<int>())).ReturnsAsync(new Client());
+            var clientCasoDeUso = new ClientUseCase(clientRepositorioMock.Object);
+            var result = await clientCasoDeUso.GetClientById(1);
+            Assert.NotNull(result);
+            Assert.IsType<Client>(result);
+        }
+
+
+
 
 
 
