@@ -27,29 +27,31 @@ namespace Infraestructure.DriverAdapter
         {
 
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            var pcQuery = $"SELECT * FROM {tableName} WHERE id_sale_product_client = @idSale";
-            var multiQuery = $"{pcQuery}";
+            var Query = $"SELECT * FROM {tableName} WHERE id_sale_product_client = @idSale";
+            var multiQuery = $"{Query}";
             using (var multi = await connection.QueryMultipleAsync(multiQuery, new { idSale }))
             
             {
-                var pc = await multi.ReadFirstOrDefaultAsync<Sale>();
-                if (pc == null)
+                var sale = await multi.ReadFirstOrDefaultAsync<Sale>();
+                if (sale == null)
                 {
                     return null;
                 }
-                var mouseQuery = $"SELECT * FROM {tableName2} WHERE id_product = {pc.product_id_product}";
+                var proQuery = $"SELECT * FROM {tableName2} WHERE id_product = {sale.product_id_product}";
+                var cliQuery = $"SELECT * FROM {tableName3} WHERE id_client = {sale.client_id_client}";
+                var produt = await connection.QuerySingleOrDefaultAsync<Product>(proQuery);
+                var clit = await connection.QuerySingleOrDefaultAsync<Client>(cliQuery);
 
-                var tecladoQuery = $"SELECT * FROM {tableName3} WHERE id_client = {pc.client_id_client}";
-                var mouse = await connection.QuerySingleOrDefaultAsync<Product>(mouseQuery);
-                var teclado = await connection.QuerySingleOrDefaultAsync<Client>(tecladoQuery);
+
+
 
                 return new SaleWithProductAndClient
                 {
-                    id_sale_product_client = pc.id_sale_product_client,
-                    Product = mouse,
-                    Client = teclado,
-                    way_to_pay = pc.way_to_pay,
-                    date_sale = pc.date_sale
+                    id_sale_product_client = sale.id_sale_product_client,
+                    Product = produt,
+                    Client = clit,
+                    way_to_pay = sale.way_to_pay,
+                    date_sale = sale.date_sale
 
                 };
             }
