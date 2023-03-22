@@ -18,7 +18,7 @@ namespace Domain.UseCases.UseCases
             _saleRepository = saleRepository;
         }
 
-        public async Task<Sale> GetSaleById(int id)
+        public async Task<SaleWithProductAndClient> GetSaleById(int id)
         {
             return await _saleRepository.GetSaleByIdAsync(id);
         }

@@ -9,7 +9,7 @@ namespace Domain.UseCases
 {
    public interface ISaleUseCase
     {
-        Task<Sale> GetSaleById(int id);
+        Task<SaleWithProductAndClient> GetSaleById(int id);
 
 
     }

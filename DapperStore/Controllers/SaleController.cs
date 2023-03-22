@@ -7,22 +7,28 @@ namespace DapperStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SaleController
+    public class SaleController : ControllerBase
     {
 
         private readonly ISaleUseCase _saleUseCase;
         private readonly IMapper _mapper;
 
-        [HttpGet("{id:int}")]
 
-        public async Task<Sale> Obtener_ProductQueCompro_By_Document(int id)
+        public SaleController(ISaleUseCase saleUseCase, IMapper mapper)
         {
-            return await _saleUseCase.GetSaleById(id);
+            _saleUseCase = saleUseCase;
+            _mapper = mapper;
         }
 
 
 
 
+        [HttpGet("{id:int}")]
+
+        public async Task<SaleWithProductAndClient> Obtener_ProductQueCompro_By_Document(int id)
+        {
+            return await _saleUseCase.GetSaleById(id);
+        }
 
 
     }

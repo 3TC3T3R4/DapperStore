@@ -8,5 +8,7 @@ namespace Domain.Entities.Commands
 {
     public  class InsertNewSale
     {
+
+
     }
 }
