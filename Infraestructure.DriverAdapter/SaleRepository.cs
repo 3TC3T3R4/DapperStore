@@ -2,11 +2,7 @@
 using Domain.Entities.Entities;
 using Domain.UseCases.Gateway.Repository;
 using Infraestructure.DriverAdapter.Gateway;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using static Humanizer.In;
 
 namespace Infraestructure.DriverAdapter
@@ -25,20 +21,38 @@ namespace Infraestructure.DriverAdapter
             _dbConnectionBuilder = dbConnectionBuilder;
         }
 
-        
 
-        public async Task<Sale> GetSaleByIdAsync(int idSale)
+
+        public async Task<SaleWithProductAndClient> GetSaleByIdAsync(int idSale)
         {
+
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            string sqlQuery = $"SELECT pro.name  AS  ProductBuy * FROM {tableName} s " +
-                $"INNER JOIN {tableName3} cl  ON  s.client_id_client = cl.id_client INNER JOIN {tableName2} pro" +
-                $"ON s.product_id_product = pro.id_product" +
-                $" WHERE   cl.type_id = 'C.C' and  cl.id_number = @idSale";
+            var pcQuery = $"SELECT * FROM {tableName} WHERE id_sale_product_client = @idSale";
+            var multiQuery = $"{pcQuery}";
+            using (var multi = await connection.QueryMultipleAsync(multiQuery, new { idSale }))
+            
+            {
+                var pc = await multi.ReadFirstOrDefaultAsync<Sale>();
+                if (pc == null)
+                {
+                    return null;
+                }
+                var mouseQuery = $"SELECT * FROM {tableName2} WHERE id_product = {pc.product_id_product}";
 
-            var result = await connection.QueryAsync<Sale>(sqlQuery);
-            connection.Close();
-            return (Sale)result;
+                var tecladoQuery = $"SELECT * FROM {tableName3} WHERE id_client = {pc.client_id_client}";
+                var mouse = await connection.QuerySingleOrDefaultAsync<Product>(mouseQuery);
+                var teclado = await connection.QuerySingleOrDefaultAsync<Client>(tecladoQuery);
 
+                return new SaleWithProductAndClient
+                {
+                    id_sale_product_client = pc.id_sale_product_client,
+                    Product = mouse,
+                    Client = teclado,
+                    way_to_pay = pc.way_to_pay,
+                    date_sale = pc.date_sale
+
+                };
+            }
         }
     }
 }

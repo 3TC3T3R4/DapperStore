@@ -4,10 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities.Commands
+namespace TestDapper.TestSale
 {
-    public  class InsertNewSale
+    public class SaleTestUseCase
     {
+
+
+
+
+
+
+
+
+
 
 
     }

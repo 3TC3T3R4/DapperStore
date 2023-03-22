@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructure.DriverAdapt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrivenAdapter.Sql", "DrivenAdapter.Sql\DrivenAdapter.Sql.csproj", "{0465376B-4C99-46F0-A27D-36B5E8517D94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDapper", "TestDapper\TestDapper.csproj", "{17944CF9-F40A-4274-B988-146960D56DC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{0465376B-4C99-46F0-A27D-36B5E8517D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0465376B-4C99-46F0-A27D-36B5E8517D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0465376B-4C99-46F0-A27D-36B5E8517D94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17944CF9-F40A-4274-B988-146960D56DC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17944CF9-F40A-4274-B988-146960D56DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17944CF9-F40A-4274-B988-146960D56DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17944CF9-F40A-4274-B988-146960D56DC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{C254D8A1-58DA-4A9A-A4E8-8547C323D864} = {34E5912C-6D58-4E99-B929-84963D4898F6}
 		{DE25780F-3DDF-4FC7-9CF7-D65AC8AC33B2} = {54E83B09-D169-4C35-AF3A-7F0DB9EEA49E}
 		{0465376B-4C99-46F0-A27D-36B5E8517D94} = {54E83B09-D169-4C35-AF3A-7F0DB9EEA49E}
+		{17944CF9-F40A-4274-B988-146960D56DC7} = {E19ADE2A-B5F8-4EFB-913F-B0A1E9C26025}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {185D975B-469A-4070-A8F3-1209915D2D47}

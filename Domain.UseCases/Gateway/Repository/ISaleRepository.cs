@@ -10,7 +10,7 @@ namespace Domain.UseCases.Gateway.Repository
     public interface ISaleRepository
     {
 
-        Task<Sale> GetSaleByIdAsync(int idSale);
+        Task<SaleWithProductAndClient> GetSaleByIdAsync(int idSale);
 
 
 
