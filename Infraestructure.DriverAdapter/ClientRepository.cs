@@ -3,6 +3,7 @@ using Dapper;
 using Domain.Entities.Entities;
 using Domain.UseCases.Gateway.Repository;
 using Infraestructure.DriverAdapter.Gateway;
+using System.Data;
 
 namespace Infraestructure.DriverAdapter
 {
@@ -19,11 +20,27 @@ namespace Infraestructure.DriverAdapter
 
         public async Task<List<Client>> GetAllClientsAsync()
         {
+            //NORMAL CONSULTA TRAINING
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             string sqlQuery = $"SELECT * FROM {tableName}";
             var result = await connection.QueryAsync<Client>(sqlQuery);
             connection.Close();
             return result.ToList();
+
+            //CONSULTA CON STOREPROCEDURE
+            //var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            //var result = await connection.QueryAsync<Client>("GETALLCLIENTS", commandType: CommandType.StoredProcedure);
+            //connection.Close();
+            //return result.ToList();
+
+            //CONSULTA CON VIEW
+            //var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            //var result = await connection.QueryAsync<Client>("SELECT * FROM GETALLCLIENTSVIEW");
+            //connection.Close();
+            //return result.ToList();
+
+
+
         }
 
         public async Task<Client> GetClientByIdAsync(int idClient)
